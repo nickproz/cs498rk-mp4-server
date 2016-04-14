@@ -35,9 +35,9 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 // Use the body-parser package in our application
-/*  app.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({
   extended: true
-}));  */
+}));  
 
 app.use(bodyParser.json());
 
@@ -65,6 +65,8 @@ usersRoute.post(function(req, res) {
 	
 	var user = new User(); 
 	var data = req.body; 
+	
+	console.log(data);
 	
 	// Initialize variables based on data passed in
 	user.name = data.name;
