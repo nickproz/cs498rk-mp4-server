@@ -66,8 +66,6 @@ usersRoute.post(function(req, res) {
 	var user = new User(); 
 	var data = req.body; 
 	
-	console.log(data);
-	
 	// Initialize variables based on data passed in
 	user.name = data.name;
 	user.email = data.email;
@@ -208,7 +206,7 @@ tasksRoute.post(function(req, res) {
 	task.name = data.name;
 	task.description = data.description;
 	task.deadline = data.deadline;
-	task.completed = false;
+	task.completed = data.completed;
 	task.assignedUserName = data.assignedUserName;
 	task.assignedUser = data.assignedUser;
 	task.dateCreated = new Date();
@@ -227,6 +225,9 @@ tasksRoute.post(function(req, res) {
 	
 	if(task.description === "undefined" || task.description === undefined)
 		task.description = "none";
+	
+	if(task.completed === undefined || task.completed === "undefined")
+		task.completed = false;
 
 	task.save(function(err, savedTask) {
 		if (err)
